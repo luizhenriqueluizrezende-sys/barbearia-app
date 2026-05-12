@@ -1,0 +1,100 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Controle de Planos</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>💈 Controle de Planos</h1>
+
+    <form id="clienteForm">
+
+      <input
+        type="text"
+        id="nome"
+        placeholder="Nome do cliente"
+        required
+      />
+
+      <input
+        type="text"
+        id="telefone"
+        placeholder="Telefone"
+        required
+      />
+
+      <input
+        type="date"
+        id="dataPagamento"
+        required
+      />
+
+      <select id="meses">
+        <option value="1">1 mês</option>
+        <option value="2">2 meses</option>
+        <option value="3">3 meses</option>
+      </select>
+
+      <button type="submit">
+        Cadastrar Cliente
+      </button>
+
+    </form>
+
+    <div class="dashboard">
+
+      <div class="dashboard-card">
+        <h3>🔴 Vencidos</h3>
+        <span id="totalVencidos">0</span>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>🟡 Próximos</h3>
+        <span id="totalProximos">0</span>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>🟢 Ativos</h3>
+        <span id="totalAtivos">0</span>
+      </div>
+
+    </div>
+
+    <input
+      type="text"
+      id="pesquisa"
+      placeholder="Pesquisar cliente..."
+    />
+
+    <h2>🔴 Vencidos</h2>
+    <div id="vencidos"></div>
+
+    <h2>🟡 Vencendo em breve</h2>
+    <div id="proximos"></div>
+
+    <h2>🟢 Ativos</h2>
+    <div id="ativos"></div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
