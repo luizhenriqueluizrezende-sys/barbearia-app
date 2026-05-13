@@ -4,7 +4,7 @@ const SUPABASE_URL =
   "https://asiqjchjamvmpaslnqxd.supabase.co";
 
 const SUPABASE_KEY =
-  "SUA_KEY_AQUI";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFzaXFqY2hqYW12bXBhc2xucXhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxMDUwMDUsImV4cCI6MjA5MzY4MTAwNX0.ixfkIS1yQi-cUaJ6SqsgLmWeZOpGLEm8W--SXxIZ1Ys";
 
 const client = window.supabase.createClient(
   SUPABASE_URL,
