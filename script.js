@@ -4,7 +4,7 @@ const SUPABASE_URL =
   "https://asiqjchjamvmpaslnqxd.supabase.co";
 
 const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFzaXFqY2hqYW12bXBhc2xucXhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxMDUwMDUsImV4cCI6MjA5MzY4MTAwNX0.ixfkIS1yQi-cUaJ6SqsgLmWeZOpGLEm8W--SXxIZ1Ys";
+  "SUA_KEY_AQUI";
 
 const client = window.supabase.createClient(
   SUPABASE_URL,
@@ -58,7 +58,7 @@ form.addEventListener("submit", async (e) => {
     );
 
   const tipoPlano =
-  document.getElementById("tipoPlano").value;
+    document.getElementById("tipoPlano").value;
 
   const vencimento =
     new Date(dataPagamento);
@@ -210,7 +210,7 @@ function renderClientes(filtro = "") {
         <p>
           ✂️ Tipo:
           ${cliente.tipo_plano}
-        /p>
+        </p>
 
         <p>
           <strong>Status:</strong>
@@ -219,12 +219,12 @@ function renderClientes(filtro = "") {
 
         <div class="botoes">
 
-        <button onclick="enviarWhatsapp(
-        '${cliente.nome}',
-        '${cliente.telefone}',
-        '${cliente.tipo_plano}'
-           )">
-              WhatsApp
+          <button onclick="enviarWhatsapp(
+            '${cliente.nome}',
+            '${cliente.telefone}',
+            '${cliente.tipo_plano}'
+          )">
+            WhatsApp
           </button>
 
           <button
@@ -352,9 +352,16 @@ async function excluirCliente(id) {
 
   buscarClientes();
 
- function enviarWhatsapp(nome, telefone, tipoPlano) {
+}
 
-  const numero = telefone.replace(/\D/g, "");
+function enviarWhatsapp(
+  nome,
+  telefone,
+  tipoPlano
+) {
+
+  const numero =
+    telefone.replace(/\D/g, "");
 
   const mensagem =
 `Olá ${nome} 👋
@@ -367,24 +374,5 @@ Deseja renovar seu plano? ✂️`;
 `https://wa.me/55${numero}?text=${encodeURIComponent(mensagem)}`;
 
   window.open(link, "_blank");
-}
-
-}function enviarWhatsapp(nome, telefone, tipoPlano) {
-
-  const mensagem =
-`Olá ${nome} 👋
-
-Seu plano de ${tipoPlano} está próximo do vencimento.
-
-Deseja renovar seu plano? ✂️`;
-
-  const numero =
-    telefone.replace(/\D/g, "");
-
-  const url =
-`https://wa.me/55${numero}?text=${encodeURIComponent(mensagem)}`;
-
-  window.open(url, "_blank");
-}
 
 }
