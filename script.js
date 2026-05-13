@@ -57,6 +57,9 @@ form.addEventListener("submit", async (e) => {
       document.getElementById("meses").value
     );
 
+  const tipoPlano =
+  document.getElementById("tipoPlano").value;
+
   const vencimento =
     new Date(dataPagamento);
 
@@ -72,6 +75,7 @@ form.addEventListener("submit", async (e) => {
         telefone,
         data_pagamento: dataPagamento,
         meses,
+        tipo_plano: tipoPlano,
         vencimento:
           vencimento.toISOString()
       }
@@ -202,6 +206,11 @@ function renderClientes(filtro = "") {
           📦 Plano:
           ${cliente.meses} mês(es)
         </p>
+
+        <p>
+          ✂️ Tipo:
+          ${cliente.tipo_plano}
+        /p>
 
         <p>
           <strong>Status:</strong>
