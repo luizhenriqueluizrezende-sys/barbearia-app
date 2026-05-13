@@ -219,6 +219,14 @@ function renderClientes(filtro = "") {
 
         <div class="botoes">
 
+        <button onclick="enviarWhatsapp(
+        '${cliente.nome}',
+        '${cliente.telefone}',
+        '${cliente.tipo_plano}'
+           )">
+              WhatsApp
+          </button>
+
           <button
             onclick="renovarPlano(${cliente.id}, 1)"
           >
@@ -343,5 +351,39 @@ async function excluirCliente(id) {
   }
 
   buscarClientes();
+
+  function enviarWhatsapp(nome, telefone, tipoPlano) {
+
+     const mensagem =
+     `Olá ${nome} 👋
+
+     Seu plano de ${tipoPlano} está próximo do vencimento.
+
+     Deseja renovar seu plano? ✂️`;
+
+     const numero =
+     telefone.replace(/\D/g, "");
+
+    const url =
+    `https://wa.me/55${numero}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(url, "_blank");
+}function enviarWhatsapp(nome, telefone, tipoPlano) {
+
+  const mensagem =
+`Olá ${nome} 👋
+
+Seu plano de ${tipoPlano} está próximo do vencimento.
+
+Deseja renovar seu plano? ✂️`;
+
+  const numero =
+    telefone.replace(/\D/g, "");
+
+  const url =
+`https://wa.me/55${numero}?text=${encodeURIComponent(mensagem)}`;
+
+  window.open(url, "_blank");
+}
 
 }
