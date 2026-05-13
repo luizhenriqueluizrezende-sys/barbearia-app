@@ -352,22 +352,23 @@ async function excluirCliente(id) {
 
   buscarClientes();
 
-  function enviarWhatsapp(nome, telefone, tipoPlano) {
+ function enviarWhatsapp(nome, telefone, tipoPlano) {
 
-     const mensagem =
-     `Olá ${nome} 👋
+  const numero = telefone.replace(/\D/g, "");
 
-     Seu plano de ${tipoPlano} está próximo do vencimento.
+  const mensagem =
+`Olá ${nome} 👋
 
-     Deseja renovar seu plano? ✂️`;
+Seu plano de ${tipoPlano} está próximo do vencimento.
 
-     const numero =
-     telefone.replace(/\D/g, "");
+Deseja renovar seu plano? ✂️`;
 
-    const url =
-    `https://wa.me/55${numero}?text=${encodeURIComponent(mensagem)}`;
+  const link =
+`https://wa.me/55${numero}?text=${encodeURIComponent(mensagem)}`;
 
-    window.open(url, "_blank");
+  window.open(link, "_blank");
+}
+
 }function enviarWhatsapp(nome, telefone, tipoPlano) {
 
   const mensagem =
