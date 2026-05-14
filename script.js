@@ -35,9 +35,108 @@ const totalProximos =
 const totalAtivos =
   document.getElementById("totalAtivos");
 
+
+const authBox =
+  document.getElementById("authBox");
+
+const sistema =
+  document.getElementById("sistema");
+
+const loginForm =
+  document.getElementById("loginForm");
+
+const criarConta =
+  document.getElementById("criarConta");
+
+let usuario = null;
+
 let clientes = [];
 
-buscarClientes();
+verificarLogin();
+
+async function verificarLogin() {
+
+  const {
+    data: { session }
+  } = await client.auth.getSession();
+
+  if (session) {
+
+    usuario = session.user;
+
+    authBox.style.display = "none";
+
+    sistema.style.display = "block";
+
+    buscarClientes();
+
+  }
+
+}
+
+loginForm.addEventListener(
+  "submit",
+  async (e) => {
+
+    e.preventDefault();
+
+    const email =
+      document.getElementById("email").value;
+
+    const senha =
+      document.getElementById("senha").value;
+
+    const { error } =
+      await client.auth.signInWithPassword({
+
+        email,
+        password: senha
+
+      });
+
+    if (error) {
+
+      alert(error.message);
+
+      return;
+
+    }
+
+    location.reload();
+
+  }
+);
+
+criarConta.addEventListener(
+  "click",
+  async () => {
+
+    const email =
+      document.getElementById("email").value;
+
+    const senha =
+      document.getElementById("senha").value;
+
+    const { error } =
+      await client.auth.signUp({
+
+        email,
+        password: senha
+
+      });
+
+    if (error) {
+
+      alert(error.message);
+
+      return;
+
+    }
+
+    alert("Conta criada com sucesso 😄");
+
+  }
+);
 
 form.addEventListener("submit", async (e) => {
 
@@ -76,8 +175,12 @@ form.addEventListener("submit", async (e) => {
         data_pagamento: dataPagamento,
         meses,
         tipo_plano: tipoPlano,
+
         vencimento:
-          vencimento.toISOString()
+          vencimento.toISOString(),
+
+        barbearia_id:
+          usuario.id
       }
     ]);
 
@@ -109,6 +212,10 @@ async function buscarClientes() {
   const { data, error } = await client
     .from("clientes")
     .select("*")
+    .eq(
+      "barbearia_id",
+      usuario.id
+    )
     .order("id", {
       ascending: false
     });
